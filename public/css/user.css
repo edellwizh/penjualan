@@ -1,0 +1,255 @@
+/* User */
+body {
+    font-family: Arial, sans-serif;
+}
+.bg-blue {
+    background-color: #b3e5fc;
+}
+
+/* Img */
+.img-placeholder {
+    background-color: #ccc;
+    border-radius: 8px;
+}
+.img-circle {
+    background-color: #000;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+}
+.img-placeholder {
+    background-color: bla;
+    width: 50%;
+    border-radius: 8px;
+}
+
+/* Lokasi */
+.lokasi {
+    background-color: #e0e0e0;
+    padding: 10px 20px;
+    align-items: center;
+    margin: 30px auto;
+    max-width: 600px;
+    border-radius: 10px;
+    margin-bottom: 80px;
+}
+
+/* SLOGAN */
+.slogan {
+    margin-top: 40px;
+    text-align: center;
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 60px;
+}
+
+/* FOOTER */
+footer {
+    background-color: #e0e0e0;
+    padding: 30px 0;
+}
+.footer-line {
+    border-top: 2px solid #000;
+    width: 90%;
+    margin: 20px auto 0;
+}
+
+/* PRODUK */
+.hero {
+    background-color: #b3e5fc;
+    padding: 60px 20px;
+}
+.welcome {
+    margin-left: 100px;
+}
+.hero-img-box img {
+    width: 100px;
+    height: 100px;
+    background-color: #ccc;
+    border: 2px solid black;
+}
+.product-card {
+    background-color: #b3e5fc;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.product-image {
+    width: 100%;
+    height: 150px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #e0e0e0;
+    border-radius: 8px;
+}
+
+.product-image img {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.testimonial {
+    background-color: #e0e0e0;
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+}
+.testimonial img {
+    width: 50px;
+    height: 50px;
+    background-color: black;
+    border-radius: 50%;
+    margin: 10px auto;
+}
+/* TESTIMONI */
+.hero-contact {
+    background-color: #b3e5fc;
+    padding: 60px 0;
+    text-align: center;
+}
+
+.form-wrapper {
+    background-color: #e5e5e5;
+    padding: 40px;
+    border-radius: 5px;
+}
+
+.contact-card {
+    background-color: #ddd;
+    padding: 30px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.contact-card i {
+    font-size: 24px;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.btn-primary-custom {
+    background-color: #b3e5fc;
+    border: none;
+}
+
+/* DETAIL PRODUK */
+.product-detail .card {
+    margin-bottom: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border: none;
+    border-radius: 12px;
+    padding: 20px;
+}
+
+.produk-gambar img {
+    width: 50%;
+    max-width: 100px;
+    height: auto;
+    border-radius: 10px;
+}
+
+.produk-info {
+    padding-left: 30px;
+}
+
+.product-desc {
+    padding-top: 20px;
+}
+
+.kategori {
+    font-size: 14px;
+    color: #888;
+    margin-bottom: 5px;
+}
+
+.harga {
+    color: #e91e63;
+    font-weight: bold;
+    margin-top: 10px;
+}
+.deskripsi-produk {
+    background-color: #f0f0f0; /* abu-abu muda */
+    padding: 30px;
+    border-radius: 8px;
+    margin-top: 40px;
+}
+
+.judul-deskripsi {
+    text-align: center;
+    font-weight: bold;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.isi-deskripsi {
+    font-size: 16px;
+    line-height: 1.7;
+    color: #333;
+}
+/* STRUK BELANJA */
+
+.struk-wrapper {
+    max-width: 800px;
+    margin: 40px auto;
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+}
+
+.produk-item {
+    border-bottom: 1px solid #eee;
+    padding: 15px 0;
+}
+
+.produk-item:last-child {
+    border-bottom: none;
+}
+
+.produk-img {
+    width: 70px;
+    height: 70px;
+    background-color: #d0ecff;
+    display: inline-block;
+    border-radius: 8px;
+    background-size: cover;
+    background-position: center;
+}
+
+.produk-info {
+    margin-left: 20px;
+}
+
+.label {
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.value {
+    color: #555;
+}
+
+.total-box {
+    border-top: 2px solid #ddd;
+    padding-top: 20px;
+}
+
+.section-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.text-sm {
+    font-size: 0.9rem;
+}
