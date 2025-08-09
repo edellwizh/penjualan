@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,9 +8,108 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('/css/user.css') }}">
     <style>
-        /* Tambahkan font Inter jika belum ada */
-        body {
-            font-family: 'Inter', sans-serif;
+        /* Gaya tambahan yang mungkin dibutuhkan */
+        .hero.detail-produk-section {
+            background-color: #b3e5fc;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        .judul-utama {
+            font-size: 2.5rem;
+            font-weight: 600;
+        }
+        .slogan-header {
+            font-size: 1rem;
+            color: #6c757d;
+        }
+        .product-detail {
+            margin-top: 40px;
+        }
+        .produk-gambar {
+            padding-right: 30px;
+        }
+        .produk-gambar .img-placeholder-lg {
+            width: 100%;
+            height: 400px;
+            background-color: #e0f7fa;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        .produk-gambar .img-placeholder-lg img {
+            max-width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+        .produk-info {
+            padding-left: 30px;
+        }
+        .produk-info h2 {
+            font-weight: bold;
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        .rating {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .rating-text {
+            margin-left: 10px;
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+        .harga {
+            color: #e91e63;
+            font-weight: bold;
+            font-size: 1.8rem;
+            margin-top: 10px;
+            margin-bottom: 5px;
+        }
+        .stok {
+            font-size: 1rem;
+            color: #555;
+        }
+        .btn-keranjang,
+        .btn-pesan {
+            background-color: #000;
+            color: #fff;
+            font-weight: bold;
+            border-radius: 50px;
+            padding: 10px 20px;
+            border: none;
+            transition: background-color 0.3s ease;
+        }
+        .btn-keranjang:hover,
+        .btn-pesan:hover {
+            background-color: #81d4fa;
+        }
+        .deskripsi-produk {
+            background-color: #e0f7fa;
+            padding: 30px;
+            border-radius: 12px;
+            margin-top: 40px;
+        }
+        .judul-deskripsi {
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+        .isi-deskripsi p {
+            line-height: 1.6;
+        }
+        .product-card {
+            background-color: #e0f7fa;
+        }
+        .product-image {
+            height: 150px;
+            background-color: #ccc;
+        }
+        .bg-blue-light {
+            background-color: #b3e5fc;
         }
     </style>
 </head>
@@ -18,68 +117,53 @@
 
 @include('sidebar.user')
 
-<!-- Detail Produk Hero Section -->
-<section class="hero-contact py-5 text-center bg-blue-light">
-    <h2 class="fw-bold text-dark"><strong>Detail Produk</strong></h2>
-    <p class="text-muted">by Sandang Sehat Indonesia</p>
-</section>
-
-<div class="container product-detail my-5 px-4">
-    <div class="row align-items-center">
-        <!-- Gambar Produk dalam card -->
-        <div class="col-md-5 col-lg-4 mb-4 mb-md-0">
-            <div class="card p-3 text-center h-100 d-flex flex-column justify-content-center align-items-center rounded-xl shadow-lg">
-                <img src="{{ asset('storage/images/' . $produks->image) }}" alt="{{ $produks->nama_produk }}" class="img-fluid produk-gambar rounded-lg">
-            </div>
-        </div>
-        
-        <!-- Info Produk -->
-        <div class="col-md-7 col-lg-8 produk-info">
-            <p class="kategori text-muted mb-1">{{ $produks->kategoris->nama_kategori }}</p>
-            <h3 class="fw-bold text-dark mb-2">{{ $produks->nama_produk }}</h3>
-            <p class="rating mb-2">
-                <span class="text-warning">★★★★☆</span>
-                <span class="rating-text text-muted">4.9 (101 review)</span>
-            </p>
-            <h4 class="harga text-danger fw-bold mb-3">Rp {{ number_format($produks->harga, 0, ',', '.') }}</h4>
-            <p class="stok text-muted mb-4">Stok: {{ $produks->jumlah_produk }}</p>
-            
-            <!-- Tombol Beli Sekarang dan Keranjang -->
-            <div class="d-flex flex-wrap gap-3 mt-3">
-                <form action="{{ url('/user/produk/beli/' . $produks->kode_produk) }}" method="POST">
-                    @csrf
-                    <input type="hidden" name="jumlah" value="1">
-                    <button type="submit" class="btn btn-secondary btn-sm rounded-pill px-4 py-2 shadow-sm">Beli Sekarang</button>
-                </form>
-
-                <form action="{{ url('/user/keranjang/tambah/' . $produks->kode_produk) }}" method="POST">
-                    @csrf
-                    <input type="hidden" name="jumlah" value="1">
-                    <button type="submit" class="btn btn-outline-secondary btn-sm rounded-pill px-4 py-2 shadow-sm">
-                        <i class="bi bi-cart-plus me-1"></i> Tambah ke Keranjang
-                    </button>
-                </form>
-            </div>
-
-            @if (session('success'))
-                <div class="alert alert-success alert-dismissible fade show mt-4" role="alert">
-                    {{ session('success') }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-            @endif
-        </div>
-    </div>
-
-    <!-- Deskripsi Produk -->
-    <div class="deskripsi-produk bg-light-gray p-4 rounded-lg mt-5 shadow-sm">
-        <h4 class="judul-deskripsi text-center fw-bold text-dark mb-4">Deskripsi Produk</h4>
-        <p class="isi-deskripsi text-dark-gray">
-            {!! nl2br(e($produks->deskripsi)) !!}
-        </p>
+{{-- Bagian Hero (Judul) dengan latar belakang biru --}}
+<div class="hero detail-produk-section">
+    <div class="container">
+        <h1 class="text-center judul-utama">Detail Produk</h1>
+        <p class="text-center slogan-header">by Sandang Sehat Indonesia</p>
     </div>
 </div>
 
-<!-- Produk Lainnya -->
+{{-- Konten Utama dengan latar belakang putih --}}
+<div class="container my-5">
+    <div class="row product-detail">
+        <div class="col-md-6 produk-gambar">
+            <div class="img-placeholder-lg">
+                <img src="{{ asset('storage/images/' . $produks->image) }}" alt="{{ $produks->nama_produk }}">
+            </div>
+        </div>
+        <div class="col-md-6 produk-info">
+            <div class="kategori">{{ $produks->kategoris->nama_kategori }}</div>
+            <h2>{{ $produks->nama_produk }}</h2>
+            <div class="rating">
+                <span class="text-warning">
+                    ★★★★★
+                </span>
+                <span class="rating-text">4.9 (101 review)</span>
+            </div>
+            <div class="harga">Rp {{ number_format($produks->harga, 0, ',', '.') }}</div>
+            <div class="stok">Stok: {{ $produks->jumlah_produk }}</div>
+            <div class="d-flex gap-2 mt-4">
+                <button class="btn-keranjang flex-grow-1">
+                    <i class="bi bi-cart"></i> Tambah Keranjang
+                </button>
+                <button class="btn-pesan flex-grow-1">
+                   Pesan Sekarang
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="deskripsi-produk">
+        <h3 class="judul-deskripsi">Deskripsi</h3>
+        <div class="isi-deskripsi">
+            <p>{!! nl2br(e($produks->deskripsi)) !!}</p>
+        </div>
+    </div>
+</div>
+
+{{-- Bagian "Produk Lainnya" --}}
 <div class="container mt-5 px-4">
     <h4 class="text-center fw-bold text-dark mb-5">Produk Lainnya</h4>
     

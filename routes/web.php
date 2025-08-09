@@ -55,35 +55,12 @@ Route::post('/testimoni/tambah', [TestimoniController::class, 'TambahTestimoni']
 // Detail produk
 Route::get('/produk/detail/{kode_produk}', [ProdukController::class, 'DetailProduk']);
 
-// Simpan tambah keranjang
-Route::post('/keranjang/tambah/{kode_produk}', [KeranjangController::class, 'TambahKeranjang']);
-
-// Menampilkan keranjang
-Route::get('/keranjang', [KeranjangController::class, 'ViewKeranjang']);
-
-// Menghapus keranjang
-Route::post('/keranjang/delete/{kode_produk}', [KeranjangController::class, 'DeleteKeranjang']);
-
-// Proses pemesanan dari keranjang
-Route::post('/keranjang/pesan', [PesanController::class, 'PesanKeranjang']);
-
-// Menampilkan struk berdasarkan ID pesan
-Route::get('/struk/{id}', [PesanController::class, 'ViewPesanan']);
-
-// Menampilkan halaman profile
 Route::get('/profile', [AuthController::class, 'Profile']);
 
-// Menampilkan form alamat
-Route::get('/profile/tambah/alamat', [AuthController::class, 'ViewTambahAlamat']);
+Route::get('/keranjang', [KamiController::class, 'Keranjang']);
 
-// Menyimpan alamat
-Route::post('/profile/alamat', [AuthController::class, 'TambahAlamat']);
+Route::get('/pemesanan', [KamiController::class, 'Checkout']);
 
-// Menampilkan form update profile 
-Route::get('/profile/edit', [AuthController::class, 'editProfile']);
-
-// Menyimpan update profile
-Route::put('/profile/update', [AuthController::class, 'updateProfile']);
 });
 
 // Route untuk admin

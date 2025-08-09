@@ -15,5 +15,15 @@ class KamiController extends Controller
         return view('user.tentangkami');
     }
 
+    public function Keranjang()
+    {
+        return view('user.keranjang');
+    }
+
+     public function Checkout()
+    {
+        return view('user.pemesanan');
+    }
+
 
 }

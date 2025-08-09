@@ -105,7 +105,9 @@
         @foreach($kategori->produks as $produk)
         <div class="col">
           <div class="product-card">
-            <div class="mb-2" style="height: 150px;"></div>
+            <div class="product-image mb-2">
+                  <img src="{{ asset('storage/images/' . $produk->image) }}" alt="{{ $produk->nama_produk }}">
+                </div>      
             <h6 class="mt-2">{{ $produk->nama_produk }}</h6>
             <p class="text-primary mb-1">Rp {{ number_format($produk->harga, 0, ',', '.') }}</p>
             <p class="text-warning">★★★★★</p>

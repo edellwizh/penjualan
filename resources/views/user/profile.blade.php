@@ -17,16 +17,13 @@
     <div class="img-circle mx-auto mb-3"></div>
     <h5 class="mb-0 fw-bold">{{ auth()->user()->name }}</h5>
 
-    @if (auth()->user()->alamat)
-      <p class="mb-0"><i class="bi bi-geo-alt-fill"></i> {{ auth()->user()->alamat }}</p>
-    @else
-      <p class="mb-2"><i class="bi bi-geo-alt-fill"></i> Alamat belum diisi</p>
-       <a href="{{ url(Auth::user()->role.'/profile/tambah/alamat') }}" class="btn btn-primary mb-3">Isi Alamat</a>
+
+      <p class="mb-2">Profil belum diisi</p>
+       <a href="" class="btn btn-primary mb-3">Isi Profil</a>
       </button>
-    @endif
 
     <div class="d-flex justify-content-center gap-2 mt-3">
-      <a href="{{ url(Auth::user()->role.'/profile/edit') }}" class="btn btn-outline-primary">
+      <a href="" class="btn btn-outline-primary">
         <i class="bi bi-pencil-square"></i> Edit Profil
       </a>
 
@@ -37,7 +34,7 @@
         </button>
       </form>
     </div>
-@include('sidebar.pesansukses')
+    
   </div>
 
   
