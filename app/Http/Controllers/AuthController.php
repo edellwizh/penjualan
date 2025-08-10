@@ -80,4 +80,40 @@ class AuthController extends Controller
         return view('user.profile');
     }
 
+    public function FormTambahProfile()
+    {
+
+        return view('crud.editprofile');
+    }
+    // Method untuk memproses update profil
+    public function UpdateProfile(Request $request)
+    {
+        // Validasi input dari form
+        $request->validate([
+            'provinsi' => 'required|string',
+            'kecamatan' => 'required|string',
+            'kelurahan' => 'required|string',
+            'kode_pos' => 'required|string|max:10',
+            'alamat_lengkap' => 'required|string',
+            'telepon' => 'required|string|max:15',
+        ]);
+
+        // Menggabungkan data alamat menjadi satu string
+        $fullAddress = $request->provinsi . ', ' .
+                       $request->kecamatan . ', ' .
+                       $request->kelurahan . ', ' .
+                       $request->alamat_lengkap . ' ' .
+                       '(' . $request->kode_pos . ')';
+
+        // Mengambil user yang sedang login
+        $users = Auth::user();
+        
+        // Memperbarui data user
+        $users->alamat = $fullAddress;
+        $users->telepon = $request->telepon;
+        $users->save(); 
+
+        // Redirect kembali ke halaman tertentu dengan pesan sukses
+        return redirect(Auth::user()->role . '/profile')->with('success', 'Profil berhasil diperbarui!');
+    }
 }

@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Profile</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-  <link rel="stylesheet" href="{{ asset('/css/user.css') }}">
+    <meta charset="UTF-8">
+    <title>Profile</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('/css/user.css') }}">
 </head>
 <body>
 
@@ -13,33 +13,50 @@
 
 <!-- Profile -->
 <div class="hero d-flex justify-content-center align-items-center text-center">
-  <div>
-    <div class="img-circle mx-auto mb-3"></div>
-    <h5 class="mb-0 fw-bold">{{ auth()->user()->name }}</h5>
+    <div>
+        <div class="img-circle mx-auto mb-3"></div>
+        <h5 class="mb-0 fw-bold">{{ auth()->user()->name }}</h5>
 
+        {{-- Logika kondisional: Tampilkan data jika sudah diisi, atau pesan jika belum --}}
+        @if(empty(auth()->user()->alamat) && empty(auth()->user()->telepon))
+            <p class="mb-2">Profile belum diisi</p>
 
-      <p class="mb-2">Profil belum diisi</p>
-       <a href="" class="btn btn-primary mb-3">Isi Profil</a>
-      </button>
+            <div class="d-flex justify-content-center gap-2 mt-3">
+              
+            <a href="{{ url(Auth::user()->role.'/profile/edit') }}" class="btn btn-primary mb-3">Isi Profile</a>
 
-    <div class="d-flex justify-content-center gap-2 mt-3">
-      <a href="" class="btn btn-outline-primary">
-        <i class="bi bi-pencil-square"></i> Edit Profil
-      </a>
+            {{-- Tombol Logout --}}
+            <form action="{{ url('logout') }}" method="POST">
+                @csrf
+                <button type="submit" class="btn btn-outline-danger">
+                    <i class="bi bi-box-arrow-right"></i> Logout
+                </button>
+            </form>
+        </div>
 
-      <form action="{{ url('logout') }}" method="POST">
-        @csrf
-        <button type="submit" class="btn btn-outline-danger">
-          <i class="bi bi-box-arrow-right"></i> Logout
-        </button>
-      </form>
+        @else
+            <p class="text-muted mb-1">{{ auth()->user()->alamat }}</p>
+            <p class="text-muted mb-2">{{ auth()->user()->telepon }}</p>
+
+            <div class="d-flex justify-content-center gap-2 mt-3">
+
+            <a href="{{ url(Auth::user()->role.'/profile/edit') }}" class="btn btn-primary mb-3">Edit Profile</a>
+
+            {{-- Tombol Logout --}}
+            <form action="{{ url('logout') }}" method="POST">
+                @csrf
+                <button type="submit" class="btn btn-outline-danger">
+                    <i class="bi bi-box-arrow-right"></i> Logout
+                </button>
+            </form>
+        </div>
+        @endif
+        
+        @include('sidebar.pesansukses')
     </div>
-    
-  </div>
-
-  
-
 </div>
+
+
 <!-- Riwayat Pesanan -->
 <div class="container py-5">
   <h5 class="mb-4">

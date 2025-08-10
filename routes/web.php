@@ -55,7 +55,14 @@ Route::post('/testimoni/tambah', [TestimoniController::class, 'TambahTestimoni']
 // Detail produk
 Route::get('/produk/detail/{kode_produk}', [ProdukController::class, 'DetailProduk']);
 
+// Halaman Profile
 Route::get('/profile', [AuthController::class, 'Profile']);
+
+// Menampilkan form tambah profile
+Route::get('/profile/edit', [AuthController::class, 'FormTambahProfile']);
+
+// Simpan profile
+Route::post('/profile/edit', [AuthController::class, 'UpdateProfile']);
 
 Route::get('/keranjang', [KamiController::class, 'Keranjang']);
 
