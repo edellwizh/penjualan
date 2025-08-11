@@ -64,9 +64,17 @@ Route::get('/profile/edit', [AuthController::class, 'FormTambahProfile']);
 // Simpan profile
 Route::post('/profile/edit', [AuthController::class, 'UpdateProfile']);
 
-Route::get('/keranjang', [KamiController::class, 'Keranjang']);
+// Menampilkan halaman keranjang belanja
+Route::get('/keranjang', [KeranjangController::class, 'ViewKeranjang']);
 
-Route::get('/pemesanan', [KamiController::class, 'Checkout']);
+// Menambah produk ke keranjang
+Route::post('/keranjang/tambah', [KeranjangController::class, 'TambahKeranjang']);
+
+// Mengubah jumlah produk di keranjang
+Route::post('/keranjang/edit/{id}', [KeranjangController::class, 'UpdateKeranjang']);
+
+// Menghapus produk dari keranjang
+Route::delete('/keranjang/hapus/{id}', [KeranjangController::class, 'HapusKeranjang']);
 
 });
 

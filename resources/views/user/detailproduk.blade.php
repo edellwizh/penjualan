@@ -145,13 +145,26 @@
             <div class="harga">Rp {{ number_format($produks->harga, 0, ',', '.') }}</div>
             <div class="stok">Stok: {{ $produks->jumlah_produk }}</div>
             <div class="d-flex gap-2 mt-4">
-                <button class="btn-keranjang flex-grow-1">
-                    <i class="bi bi-cart"></i> Tambah Keranjang
-                </button>
+
+                <form action="{{ url(Auth::user()->role.'/keranjang/tambah/') }}" method="POST">
+                    @csrf
+
+                    {{-- Input hidden untuk mengirim kode_produk --}}
+                    <input type="hidden" name="kode_produk" value="{{ $produks->kode_produk }}">
+                    
+                    {{-- Input hidden untuk mengirim jumlah produk (default 1) --}}
+                    <input type="hidden" name="quantity" value="1">
+
+                    <button type="submit" class="btn-keranjang flex-grow-1">
+                        <i class="bi bi-cart"></i> Tambah Keranjang
+                    </button>
+                </form>
+
                 <button class="btn-pesan flex-grow-1">
                    Pesan Sekarang
                 </button>
             </div>
+            @include('sidebar.pesansukses')
         </div>
     </div>
 
