@@ -76,6 +76,22 @@ Route::post('/keranjang/edit/{id}', [KeranjangController::class, 'UpdateKeranjan
 // Menghapus produk dari keranjang
 Route::delete('/keranjang/hapus/{id}', [KeranjangController::class, 'HapusKeranjang']);
 
+// Menampilkan halaman checkout
+Route::get('/pesan', [PesanController::class, 'ViewPesan']);
+
+// Memproses pesanan dari halaman checkout
+Route::post('/pesan', [PesanController::class, 'ProsesPesan']);
+
+// Route untuk menampilkan halaman pembayaran
+// Pengguna akan diarahkan ke sini setelah pesanan berhasil diproses
+Route::get('/pembayaran', [PesanController::class, 'halamanPembayaran']);
+
+// Route untuk memproses pesanan (mengubah status)
+Route::get('/proses-pesanan/{id}', [PesanController::class, 'prosesPesanan']);
+
+// Route untuk menampilkan riwayat pesanan (semua atau detail)
+Route::get('/riwayat-pemesanan', [PesanController::class, 'riwayatPemesanan']);
+
 });
 
 // Route untuk admin

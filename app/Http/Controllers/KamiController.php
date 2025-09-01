@@ -14,11 +14,4 @@ class KamiController extends Controller
     {
         return view('user.tentangkami');
     }
-
-     public function Checkout()
-    {
-        return view('user.pemesanan');
-    }
-
-
 }

@@ -22,30 +22,30 @@
   </div>
 </section>
 
-<!-- Produk Sections -->
+<!-- View 2 produk diatas -->
 <div class="container my-5">
-
-  @foreach($kategorisAtas as $kategori)
-  @if ($kategori->produks->count() > 0)
-    <h5 class="mb-3">{{ $kategori->nama_kategori }}</h5>
-      <div class="row row-cols-2 row-cols-md-3 row-cols-lg-6 g-4 mb-5">
-        @foreach($kategori->produks as $produk)
-        <div class="col">
-          <a href="{{ url('/user/produk/detail/' . $produk->kode_produk) }}">
-          <div class="product-card">
-            <div class="product-image mb-2">
-                  <img src="{{ asset('storage/images/' . $produk->image) }}" alt="{{ $produk->nama_produk }}">
-                </div>            
-            <h6 class="mt-2">{{ $produk->nama_produk }}</h6>
-            <p class="text-primary mb-1">Rp {{ number_format($produk->harga, 0, ',', '.') }}</p>
-            <p class="text-warning">★★★★★</p>
-          </div>
-           </a>
-        </div>
-        @endforeach
-      </div>
-    @endif
-  @endforeach
+    @foreach($kategorisAtas as $kategori)
+        @if ($kategori->produks->count() > 0)
+            <h5 class="mb-4 text-dark">{{ $kategori->nama_kategori }}</h5>
+            <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-4 mb-5">
+                @foreach($kategori->produks as $produk)
+                    <div class="col">
+                        <a href="{{ url('/user/produk/detail/' . $produk->kode_produk) }}" class="text-decoration-none">
+                            <div class="product-card bg-blue-light p-3 rounded-xl text-center h-100 d-flex flex-column justify-content-between shadow-sm">
+                                <div class="product-image mb-3 rounded-lg overflow-hidden d-flex justify-content-center align-items-center">
+                                    <img src="{{ asset('storage/images/' . $produk->image) }}" alt="{{ $produk->nama_produk }}" class="img-fluid rounded-lg">
+                                </div>
+                                <h6 class="mt-2 text-dark fw-semibold">{{ $produk->nama_produk }}</h6>
+                                <p class="text-primary fw-bold mb-1">Rp {{ number_format($produk->harga, 0, ',', '.') }}</p>
+                                <p class="text-warning mb-0">★★★★★</p>
+                            </div>
+                        </a>
+                    </div>
+                @endforeach
+            </div>
+        @endif
+    @endforeach
+</div>
 
   <!-- Testimoni Carousel Section -->
 <div class="container my-5">
@@ -85,39 +85,33 @@
         </div>
       @endforelse
     </div>
-
-    <!-- Navigasi panah -->
-    <button class="carousel-control-prev" type="button" data-bs-target="#testimoniCarousel" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" style="background-color: black;" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#testimoniCarousel" data-bs-slide="next">
-      <span class="carousel-control-next-icon" style="background-color: black;" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
   </div>
+  
+<!-- View 2 produk dibawah -->
+<div class="container my-5">
+    @foreach($kategorisBawah as $kategori)
+        @if ($kategori->produks->count() > 0)
+            <h5 class="mb-4 text-dark">{{ $kategori->nama_kategori }}</h5>
+            <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-4 mb-5">
+                @foreach($kategori->produks as $produk)
+                    <div class="col">
+                        <a href="{{ url('/user/produk/detail/' . $produk->kode_produk) }}" class="text-decoration-none">
+                            <div class="product-card bg-blue-light p-3 rounded-xl text-center h-100 d-flex flex-column justify-content-between shadow-sm">
+                                <div class="product-image mb-3 rounded-lg overflow-hidden d-flex justify-content-center align-items-center">
+                                    <img src="{{ asset('storage/images/' . $produk->image) }}" alt="{{ $produk->nama_produk }}" class="img-fluid rounded-lg">
+                                </div>
+                                <h6 class="mt-2 text-dark fw-semibold">{{ $produk->nama_produk }}</h6>
+                                <p class="text-primary fw-bold mb-1">Rp {{ number_format($produk->harga, 0, ',', '.') }}</p>
+                                <p class="text-warning mb-0">★★★★★</p>
+                            </div>
+                        </a>
+                    </div>
+                @endforeach
+            </div>
+        @endif
+    @endforeach
 </div>
 
-  @foreach($kategorisBawah as $kategori)
-  @if ($kategori->produks->count() > 0)
-    <h5 class="mb-3">{{ $kategori->nama_kategori }}</h5>
-      <div class="row row-cols-2 row-cols-md-3 row-cols-lg-6 g-4 mb-5">
-        @foreach($kategori->produks as $produk)
-        <div class="col">
-          <div class="product-card">
-            <div class="product-image mb-2">
-                  <img src="{{ asset('storage/images/' . $produk->image) }}" alt="{{ $produk->nama_produk }}">
-                </div>      
-            <h6 class="mt-2">{{ $produk->nama_produk }}</h6>
-            <p class="text-primary mb-1">Rp {{ number_format($produk->harga, 0, ',', '.') }}</p>
-            <p class="text-warning">★★★★★</p>
-          </div>
-        </div>
-        @endforeach
-      </div>
-    @endif
-  @endforeach
-  
 </div>
 
 @include('sidebar.footer')

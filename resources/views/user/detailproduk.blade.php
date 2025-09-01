@@ -117,7 +117,6 @@
 
 @include('sidebar.user')
 
-{{-- Bagian Hero (Judul) dengan latar belakang biru --}}
 <div class="hero detail-produk-section">
     <div class="container">
         <h1 class="text-center judul-utama">Detail Produk</h1>
@@ -125,7 +124,6 @@
     </div>
 </div>
 
-{{-- Konten Utama dengan latar belakang putih --}}
 <div class="container my-5">
     <div class="row product-detail">
         <div class="col-md-6 produk-gambar">
@@ -176,7 +174,6 @@
     </div>
 </div>
 
-{{-- Bagian "Produk Lainnya" --}}
 <div class="container mt-5 px-4">
     <h4 class="text-center fw-bold text-dark mb-5">Produk Lainnya</h4>
     

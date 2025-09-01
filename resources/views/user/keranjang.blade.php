@@ -81,7 +81,7 @@
         <div class="d-grid mt-4">
             {{-- Tombol checkout hanya aktif jika keranjang tidak kosong --}}
             @if ($keranjang->count() > 0)
-                <a href="" class="btn-pesan text-center text-decoration-none">Pesan</a>
+                <a href="{{ url(Auth::user()->role.'/pesan') }}" class="btn-pesan text-center text-decoration-none">Pesan</a>
             @else
                 <button class="btn-pesan" disabled>Pesan</button>
             @endif

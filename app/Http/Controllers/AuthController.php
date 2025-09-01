@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use App\Models\Pesanan; 
 
 class AuthController extends Controller
 {
@@ -76,8 +77,14 @@ class AuthController extends Controller
 
     // Menampilkan halaman profil user
     public function Profile()
-    {
-        return view('user.profile');
+     {
+        // Ambil 3 riwayat pesanan terakhir
+        $recentOrders = Pesanan::where('user_id', Auth::id())
+                         ->orderBy('created_at', 'desc')
+                         ->limit(3)
+                         ->get();
+
+        return view('user.profile', compact('recentOrders'));
     }
 
     public function FormTambahProfile()
