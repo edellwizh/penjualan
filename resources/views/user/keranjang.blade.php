@@ -6,13 +6,13 @@
     <title>Keranjang</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('/css/user.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/user1.css') }}">
 </head>
 <body>
 
 @include('sidebar.user')
 
-<section class="hero detail-produk-section">
+<section class="hero hero-keranjang">
     <div class="container">
         <div class="header-keranjang">
             <h1 class="text-center judul-utama">Keranjang Belanja</h1>
@@ -21,7 +21,7 @@
 
         @include('sidebar.pesansukses')
 
-        <div class="keranjang-card">
+        <div class="kartu-keranjang">
             <div class="card-header-keranjang d-flex justify-content-between align-items-center">
                 <span>Keranjang Kamu</span>
                 <span class="badge rounded-pill bg-light text-dark">{{ $keranjang->count() }} item</span>
@@ -29,7 +29,6 @@
             <div class="card-body-keranjang">
                 @forelse ($keranjang as $item)
                     <div class="item-keranjang d-flex align-items-center mb-3">
-                        {{-- Tampilan gambar produk --}}
                         <div class="img-produk-keranjang">
                             @if($item->produk->image)
                                 <img src="{{ asset('storage/images/' . $item->produk->image) }}" alt="{{ $item->produk->nama_produk }}" class="img-fluid rounded">
@@ -40,12 +39,10 @@
                             @endif
                         </div>
                         
-                        {{-- Informasi produk --}}
                         <div class="info-produk-keranjang flex-grow-1 ms-3">
                             <div class="nama-produk">{{ $item->produk->nama_produk }}</div>
                             <div class="harga-produk">Rp. {{ number_format($item->produk->harga, 0, ',', '.') }}</div>
                             
-                            {{-- Form untuk hapus produk --}}
                             <form action="{{ url(Auth::user()->role.'/keranjang/hapus/' . $item->id) }}" method="POST" class="d-inline">
                                 @csrf
                                 @method('DELETE')
@@ -55,8 +52,7 @@
                             </form>
                         </div>
                         
-                        {{-- Form untuk update quantity --}}
-                        <div class="qty-control">
+                        <div class="kontrol-jumlah">
                             <form action="{{ url(Auth::user()->role.'/keranjang/edit/' . $item->id) }}" method="POST">
                                 @csrf
                                 @method('POST')
@@ -79,7 +75,6 @@
         </div>
 
         <div class="d-grid mt-4">
-            {{-- Tombol checkout hanya aktif jika keranjang tidak kosong --}}
             @if ($keranjang->count() > 0)
                 <a href="{{ url(Auth::user()->role.'/pesan') }}" class="btn-pesan text-center text-decoration-none">Pesan</a>
             @else

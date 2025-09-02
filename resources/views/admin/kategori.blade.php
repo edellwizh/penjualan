@@ -4,18 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daftar Kategori</title>
-
-    <!-- CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('/css/admin.css') }}">
 </head>
 <body>
-
-@include('sidebar.admin')
-    <!-- Main content -->
+    @include('sidebar.admin')
+    
     <div class="main-content container mt-4">
-        <!-- Header -->
         <header class="mb-3">
             <h2>Daftar Kategori</h2>
             <p>Masukkan kategori-kategori produk milik kamu. Supaya produk kamu makin terstruktur isinya.</p>
@@ -25,8 +21,6 @@
 
         <a href="{{ url(Auth::user()->role.'/kategori/tambah') }}" class="btn btn-primary mb-3">+ Tambah Kategori</a>
 
-
-        <!-- Tabel kategori -->
         <table class="table table-bordered table-striped">
             <thead class="table-dark">
                 <tr>
@@ -42,7 +36,8 @@
                         <td>{{ $index + 1 }}</td>
                         <td>{{ $kategori->nama_kategori }}</td>
                         <td>{{ $kategori->deskripsi }}</td>
-                        <td><a href="{{ url(Auth::user()->role.'/kategori/edit/' . $kategori->id) }}" class="btn btn-warning btn-sm mb-1">Edit</a>
+                        <td>
+                            <a href="{{ url(Auth::user()->role.'/kategori/edit/' . $kategori->id) }}" class="btn btn-warning btn-sm mb-1">Edit</a>
                             <form action="{{ url(Auth::user()->role.'/kategori/delete/' . $kategori->id) }}" method="POST" style="display:inline-block">
                                 @csrf
                                 @method('DELETE')
@@ -52,7 +47,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="3" class="text-center text-muted">Belum ada kategori</td>
+                        <td colspan="4" class="text-center text-muted">Belum ada kategori</td>
                     </tr>
                 @endforelse
             </tbody>
@@ -60,4 +55,5 @@
     </div>
 
     @include('sidebar.footer')
-
+</body>
+</html>

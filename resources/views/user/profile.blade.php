@@ -6,44 +6,7 @@
     <title>Profile</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('/css/user.css') }}">
-    <style>
-        .hero {
-            background-color: #b3e5fc;
-            padding: 60px 20px;
-        }
-        .img-circle {
-            width: 100px;
-            height: 100px;
-            background-color: #ccc;
-            border-radius: 50%;
-        }
-        .order-summary {
-            background-color: #fff;
-            border-radius: 12px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            padding: 15px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-        .order-summary:last-child {
-            margin-bottom: 0;
-        }
-        .status-complete {
-            background-color: #d4edda;
-            color: #155724;
-        }
-        .status-shipping {
-            background-color: #fff3cd;
-            color: #856404;
-        }
-        .status-pending {
-            background-color: #f8d7da;
-            color: #721c24;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('/css/user1.css') }}">
 </head>
 <body>
 
@@ -54,14 +17,10 @@
         <div class="img-circle mx-auto mb-3"></div>
         <h5 class="mb-0 fw-bold">{{ auth()->user()->name }}</h5>
 
-        {{-- Logika kondisional: Tampilkan data jika sudah diisi, atau pesan jika belum --}}
         @if(empty(auth()->user()->alamat) && empty(auth()->user()->telepon))
             <p class="mb-2">Profile belum diisi</p>
-
             <div class="d-flex justify-content-center gap-2 mt-3">
                 <a href="{{ url(Auth::user()->role.'/profile/edit') }}" class="btn btn-primary mb-3">Isi Profile</a>
-
-                {{-- Tombol Logout --}}
                 <form action="{{ url('logout') }}" method="POST">
                     @csrf
                     <button type="submit" class="btn btn-outline-danger">
@@ -69,15 +28,11 @@
                     </button>
                 </form>
             </div>
-
         @else
             <p class="text-muted mb-1">{{ auth()->user()->alamat }}</p>
             <p class="text-muted mb-2">{{ auth()->user()->telepon }}</p>
-
             <div class="d-flex justify-content-center gap-2 mt-3">
                 <a href="{{ url(Auth::user()->role.'/profile/edit') }}" class="btn btn-primary mb-3">Edit Profile</a>
-
-                {{-- Tombol Logout --}}
                 <form action="{{ url('logout') }}" method="POST">
                     @csrf
                     <button type="submit" class="btn btn-outline-danger">
@@ -101,9 +56,9 @@
 
     @php
         $recentOrders = App\Models\Pesanan::where('user_id', Auth::id())
-                         ->orderBy('created_at', 'desc')
-                         ->limit(3)
-                         ->get();
+                          ->orderBy('created_at', 'desc')
+                          ->limit(3)
+                          ->get();
     @endphp
 
     @if($recentOrders->count() > 0)

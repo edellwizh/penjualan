@@ -6,77 +6,13 @@
     <title>Ringkasan Pesanan - Sandang Sehat Indonesia</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('/css/user.css') }}">
-    <style>
-        /* CSS tambahan untuk halaman checkout */
-        .hero-checkout {
-            background-color: #b3e5fc;
-            padding: 60px 20px;
-            text-align: center;
-        }
-        .ringkasan-card {
-            background-color: #e0f7fa; /* Warna latar belakang biru muda */
-            padding: 20px;
-            border-radius: 12px;
-            max-width: 500px; /* Lebar maksimum untuk ringkasan */
-            margin: 0 auto; /* Tengah-tengah halaman */
-        }
-        .item-ringkasan {
-            padding: 10px 0;
-            border-bottom: 1px solid #ced4da;
-        }
-        .item-ringkasan:last-child {
-            border-bottom: none;
-        }
-        .img-produk-checkout {
-            width: 60px;
-            height: 60px;
-            background-color: #ccc;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .img-produk-checkout img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 8px;
-        }
-        .total-ringkasan {
-            border-top: 2px solid #000;
-            padding-top: 15px;
-            margin-top: 15px;
-        }
-        .btn-checkout {
-            background-color: #000;
-            color: #fff;
-            font-weight: bold;
-            border-radius: 50px;
-            padding: 10px 20px;
-            transition: background-color 0.3s ease;
-            border: none;
-            cursor: pointer;
-        }
-        .btn-checkout:hover {
-            background-color: #81d4fa;
-        }
-        .info-pesanan {
-            background-color: #ffffff;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-        }
-        .info-pesanan p {
-            margin-bottom: 5px;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('/css/user1.css') }}">
 </head>
 <body>
 
 @include('sidebar.user')
 
-<div class="hero-checkout">
+<div class="hero hero-checkout">
     <h1 class="fw-bold">Ringkasan Pesanan</h1>
     <p class="mb-0">Berikut adalah detail pesanan Anda</p>
 </div>
@@ -86,13 +22,10 @@
         <h4 class="fw-bold mb-4">Detail Pesanan</h4>
         
         <div class="info-pesanan">
-            {{-- PERBAIKAN: Gunakan variabel invoiceNumber dari controller --}}
             <p><strong>Nomor Faktur:</strong> {{ $invoiceNumber }}</p>
             <p><strong>Telepon:</strong> {{ Auth::user()->telepon }}</p>
-
-            <p><strong>Alamat Pengiriman:</strong> {{ Auth::user()->alamat }}</p>  
+            <p><strong>Alamat Pengiriman:</strong> {{ Auth::user()->alamat }}</p>
             <a href="{{ url(Auth::user()->role.'/profile/edit') }}" class="ms-2"><small>(Edit Alamat)</small></a>
-            
         </div>
         
         @foreach($keranjang as $item)
@@ -130,11 +63,10 @@
         
         <form action="{{ url(Auth::user()->role.'/pesan') }}" method="POST">
             @csrf
-            {{-- Mengirim nomor faktur sebagai input tersembunyi --}}
             <input type="hidden" name="invoice_number" value="{{ $invoiceNumber }}">
-            <button type="submit" class="btn btn-checkout w-100 mt-4" onclick="return confirm('Yakin ingin melakukan pembayaran?')">Lanjutkan Pembayaran</button>
+            <button type="submit" class="btn-checkout w-100 mt-4" onclick="return confirm('Yakin ingin melakukan pembayaran?')">Lanjutkan Pembayaran</button>
         </form>
-      </div>
+    </div>
 </div>
 
 @include('sidebar.footer')
