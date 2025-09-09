@@ -69,8 +69,8 @@
                 </div>
                 <div>
                     <span class="badge 
-                        @if($order->status == 'Pesanan Diproses') status-shipping
-                        @elseif($order->status == 'Selesai') status-complete
+                        @if($order->status == 'pesanan_diproses') status-shipping
+                        @elseif($order->status == 'selesai') status-complete
                         @else status-pending
                         @endif">
                         {{ $order->status }}

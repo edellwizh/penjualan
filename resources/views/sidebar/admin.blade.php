@@ -5,8 +5,8 @@
               <li><a href="{{ url(Auth::user()->role.'/home') }}">Home</a></li>
               <li><a href="{{ url(Auth::user()->role.'/produk') }}">Produk</a></li>
               <li><a href="{{ url(Auth::user()->role.'/testimoni') }}">Testimoni</a></li>
-              <li><a href="#">Penjualan</a></li></li>
-              <li><a href="{{ url(Auth::user()->role.'/laporan') }}">Laporan</a></li>
+              <li><a href="{{ url(Auth::user()->role.'/pesanan/status') }}">Status Pemesanan</a></li></li>
+              <li><a href="{{ url(Auth::user()->role.'/laporan') }}">Laporan Produk</a></li>
               <li><a href="#">Pengaturan</a></li>
               <form action="{{ url('logout') }}" method="post">
                 @csrf

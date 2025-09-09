@@ -7,6 +7,7 @@ use App\Http\Controllers\KamiController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\KeranjangController;
 use App\Http\Controllers\PesanController;
+use App\Http\Controllers\StatusPesananController;
 use App\Http\Controllers\TestimoniController;
 use Illuminate\Support\Facades\Route;
 
@@ -83,14 +84,19 @@ Route::get('/pesan', [PesanController::class, 'ViewPesan']);
 Route::post('/pesan', [PesanController::class, 'ProsesPesan']);
 
 // Route untuk menampilkan halaman pembayaran
-// Pengguna akan diarahkan ke sini setelah pesanan berhasil diproses
 Route::get('/pembayaran', [PesanController::class, 'halamanPembayaran']);
 
-// Route untuk memproses pesanan (mengubah status)
-Route::get('/proses-pesanan/{id}', [PesanController::class, 'prosesPesanan']);
+// Route untuk redirect ke pembayaran berdasarkan ID pesanan
+Route::get('/bayar/{id}', [PesanController::class, 'redirectToPembayaran'])->name('user.pembayaran');
 
 // Route untuk menampilkan riwayat pesanan (semua atau detail)
 Route::get('/riwayat-pemesanan', [PesanController::class, 'riwayatPemesanan']);
+
+// Route untuk menampilkan detail status pesanan
+Route::get('/detailstatus-pemesanan/{id}', [StatusPesananController::class, 'DetailPesanan']);
+
+// Route untuk memproses pesanan setelah pembayaran
+Route::get('/proses-pesanan/{id}', [PesanController::class, 'prosesPesanan'])->name('user.riwayat_pesanan');
 
 });
 
@@ -148,4 +154,10 @@ Route::get('/testimoni/status/{id}', [TestimoniController::class, 'UpdateStatus'
 
 // menampilkan  testimoni
 Route::get('/testimoni/delete/{id}', [TestimoniController::class, 'delete']);
+
+// Route untuk menampilkan status
+Route::get('/pesanan/status', [StatusPesananController::class, 'Status']);
+
+// Route untuk menyimpan status baru
+Route::post('/pesanan/status/{pesanan}', [StatusPesananController::class, 'updateStatus']);
 });

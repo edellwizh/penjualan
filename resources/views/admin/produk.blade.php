@@ -36,6 +36,7 @@
                                     </div>
 
                                     <h6 class="mt-2 text-dark fw-semibold">{{ $item->nama_produk }}</h6>
+                                    <p class="fw-bold text-danger">Stok: {{ $item->jumlah_produk }}</p>
                                     <p class="fw-bold text-primary">Rp {{ number_format($item->harga, 0, ',', '.') }}</p>
                                     
                                     <div class="d-flex gap-2">
