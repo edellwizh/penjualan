@@ -30,7 +30,7 @@
       <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-4 mb-5">
         @foreach($kategori->produks as $produk)
           <div class="col">
-            <a href="{{ url('/user/produk/detail/' . $produk->kode_produk) }}" class="text-decoration-none">
+            <a href="{{ url(Auth::user()->role. '/produk/detail/' . $produk->kode_produk) }}" class="text-decoration-none">
               <div class="product-card text-center h-100 d-flex flex-column justify-content-between shadow-sm">
                 <div class="product-image mb-3 d-flex justify-content-center align-items-center">
                   <img src="{{ asset('storage/images/' . $produk->image) }}" alt="{{ $produk->nama_produk }}" class="img-fluid">
@@ -95,7 +95,7 @@
         <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-4 mb-5">
           @foreach($kategori->produks as $produk)
             <div class="col">
-              <a href="{{ url('/user/produk/detail/' . $produk->kode_produk) }}" class="text-decoration-none">
+              <a href="{{ url(Auth::user()->role. '/produk/detail/' . $produk->kode_produk) }}" class="text-decoration-none">
                 <div class="product-card text-center h-100 d-flex flex-column justify-content-between shadow-sm">
                   <div class="product-image mb-3 d-flex justify-content-center align-items-center">
                     <img src="{{ asset('storage/images/' . $produk->image) }}" alt="{{ $produk->nama_produk }}" class="img-fluid">

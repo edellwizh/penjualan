@@ -47,6 +47,7 @@
                                             <button type="submit" class="btn btn-danger w-100" onclick="return confirm('Yakin ingin menghapus produk ini?')">Hapus</button>
                                         </form>
                                     </div>
+                                    
                                 </div>
                             </div>
                         @endforeach

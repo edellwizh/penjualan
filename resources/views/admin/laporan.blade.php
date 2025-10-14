@@ -29,7 +29,8 @@
                                 <th>No</th>
                                 <th>Nama Produk</th>
                                 <th>Harga</th>
-                                <th>Jumlah Produk</th>
+                                <th>Stok</th>
+                                <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -39,6 +40,15 @@
                                     <td>{{ $product->nama_produk }}</td>
                                     <td>Rp{{ number_format($product->harga, 0, ',', '.') }}</td>
                                     <td>{{ $product->jumlah_produk }}</td>
+                                    <td>
+                                        <div class="d-flex gap-2">
+                                        <a href="{{ url(Auth::user()->role.'/produk/edit/' . $product->kode_produk) }}" class="btn btn-warning flex-grow-1">Edit</a>
+                                        <form action="{{ url(Auth::user()->role.'/produk/delete/' .$product->kode_produk) }}" method="post" class="flex-grow-1">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger w-100" onclick="return confirm('Yakin ingin menghapus produk ini?')">Hapus</button>
+                                        </form>
+                                    </div></td>
                                 </tr>
                             @endforeach
                         </tbody>

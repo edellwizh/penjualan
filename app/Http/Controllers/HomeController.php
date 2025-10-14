@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Produk;
+use App\Models\Pesanan;
+use App\Models\DetailPesanan;
 use ArielMejiaDev\LarapexCharts\Facades\LarapexChart;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -68,5 +70,28 @@ class HomeController extends Controller
             'chart' => $chart // Pass chart ke view
         ];
         return view('admin.home', $data);
+    }
+
+     public function indexPendapatan()
+    {
+        // Ambil semua transaksi selesai, dikelompokkan per tanggal
+        $pendapatanPerTanggal = Pesanan::where('status', 'selesai')
+            ->selectRaw('DATE(created_at) as tanggal, SUM(total_harga) as total_pendapatan, COUNT(*) as jumlah_transaksi')
+            ->groupBy('tanggal')
+            ->orderBy('tanggal', 'desc')
+            ->get();
+
+        return view('admin.pendapatan', compact('pendapatanPerTanggal'));
+    }
+
+    public function detailPendapatan($tanggal)
+    {
+        // Ambil semua transaksi selesai di tanggal tertentu
+        $transaksiHariItu = Pesanan::where('status', 'selesai')
+            ->whereDate('created_at', $tanggal)
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        return view('admin.detailpendapatan', compact('transaksiHariItu', 'tanggal'));
     }
 }

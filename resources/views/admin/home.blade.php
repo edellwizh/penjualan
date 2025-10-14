@@ -18,20 +18,31 @@
         <!-- Stats Cards -->
         <div class="cards">
             <div class="card">
-                <h3>Total Produk</h3>
+                <a href="{{ url(Auth::user()->role.'/laporan') }}" class="text-decoration-none">
+                <h3>Laporan Produk</h3>
                 <p id="total-products">{{$totalProducts}}</p>
+                </a>
             </div>
+
             <div class="card">
+                <a href="#" class="text-decoration-none">
                 <h3>Penjualan Hari Ini</h3>
                 <p id="sales-today">{{$salesToday}}</p>
+                </a>
             </div>
+
             <div class="card">
+                <a href="{{ url(Auth::user()->role.'/pendapatan') }}" class="text-decoration-none">
                 <h3>Total Pendapatan</h3>
                 <p id="total-revenue">Rp 50,000,000</p>
+                </a>
             </div>
+
             <div class="card">
+                <a href="#" class="text-decoration-none">
                 <h3>Pengguna Terdaftar</h3>
                 <p id="registered-users">{{ $registeredUsers }}</p>
+                </a>
             </div>
         </div>
 
@@ -41,7 +52,7 @@
 
         <!-- Sales chart -->
         <div id="chart">
-            <h2>Grafik Penjualan Bulanan</h2>
+            <h2>Grafik Penambahan Produk</h2>
             {!! $chart->container() !!}
         </div>
 

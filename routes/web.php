@@ -160,4 +160,10 @@ Route::get('/pesanan/status', [StatusPesananController::class, 'Status']);
 
 // Route untuk menyimpan status baru
 Route::post('/pesanan/status/{pesanan}', [StatusPesananController::class, 'updateStatus']);
+
+// Route untuk pendapatan
+Route::get('/pendapatan', [HomeController::class, 'indexPendapatan']);
+
+// Route untuk detail pendapatan
+Route::get('/pendapatan/{tanggal}', [HomeController::class, 'detailPendapatan']);
 });
