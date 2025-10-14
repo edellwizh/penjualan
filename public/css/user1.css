@@ -1,0 +1,540 @@
+        /* Menggunakan CSS yang sudah kamu berikan */
+        /*====================
+            GLOBAL & UTILITIES
+            ====================*/
+        body {
+            font-family: 'Poppins', Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        .bg-biru {
+            background-color: #b3e5fc;
+        }
+        
+        /* Gambar & Penempatan */
+        .placeholder-gambar {
+            background-color: #ccc;
+            border-radius: 8px;
+        }
+        .gambar-lingkaran {
+            background-color: #000;
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            margin: 0 auto;
+        }
+        .placeholder-gambar {
+            background-color: #cccccc;
+            width: 50%;
+            border-radius: 8px;
+        }
+        .img-placeholder-lg {
+            width: 100%;
+            height: 400px;
+            background-color: #e0f7fa;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        .img-placeholder-lg img {
+            max-width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+        .img-produk-keranjang {
+            width: 80px;
+            height: 80px;
+            background-color: #e0f7fa;
+            border-radius: 8px;
+        }
+        .img-produk-keranjang img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        .img-produk-checkout {
+            width: 60px;
+            height: 60px;
+            background-color: #ccc;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .img-produk-checkout img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        .qr-code img {
+            width: 250px;
+            height: 250px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        /* Tombol */
+        .tombol-primer-kustom {
+            background-color: #b3e5fc;
+            border: none;
+        }
+        .tombol-pesan,
+        .btn-keranjang,
+        .btn-pesan,
+        .btn-checkout,
+        .btn-view-order {
+            background-color: #000;
+            color: #fff;
+            font-weight: bold;
+            border: none;
+            border-radius: 50px;
+            padding: 10px 20px;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            display: block; /* Agar bisa pakai margin auto, etc. */
+        }
+        .tombol-pesan:hover,
+        .btn-keranjang:hover,
+        .btn-pesan:hover,
+        .btn-checkout:hover,
+        .btn-view-order:hover {
+            background-color: #81d4fa;
+            color: #000;
+        }
+        /* Tombol Pesan di Halaman Keranjang */
+        .btn-pesan {
+            display: block;
+            width: 200px;
+            margin: 0 auto;
+            padding: 12px 24px;
+            font-size: 1.1rem;
+        }
+
+        /*====================
+            LAYOUT & SECTIONS
+            ====================*/
+        /* Header Utama (Hero) - Digunakan oleh banyak halaman */
+        .hero,
+        .hero-riwayat,
+        .hero-kontak,
+        .hero-detail-produk,
+        .hero-keranjang,
+        .hero-checkout {
+            background-color: #b3e5fc;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #e0e0e0;
+            padding: 30px 0;
+            margin-top: 50px;
+        }
+        .garis-footer {
+            border-top: 2px solid #000;
+            width: 90%;
+            margin: 20px auto 0;
+        }
+
+        /* Lokasi & Slogan */
+        .lokasi {
+            background-color: #e0e0e0;
+            padding: 10px 20px;
+            align-items: center;
+            margin: 30px auto;
+            max-width: 600px;
+            border-radius: 10px;
+            margin-bottom: 80px;
+        }
+        .slogan {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 60px;
+        }
+
+
+        /*====================
+            KOMPONEN
+            ====================*/
+        /* Judul dan Slogan Umum */
+        .judul-utama {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: #333;
+        }
+        .slogan-header {
+            font-size: 1rem;
+            color: #6c757d;
+            margin-bottom: 40px;
+        }
+
+        /* Kartu Produk - Digunakan oleh detail produk */
+        .kartu-produk {
+            background-color: #b3e5fc;
+            padding: 10px;
+            border-radius: 10px;
+            text-align: center;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .gambar-produk {
+            width: 100%;
+            height: 150px;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #e0e0e0;
+            border-radius: 8px;
+        }
+        .gambar-produk img {
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        .selamat-datang {
+            margin-left: 100px; /* Kelas tidak konsisten */
+        }
+        .kotak-gambar-hero img {
+            width: 100px; /* Kelas tidak konsisten */
+            height: 100px;
+            background-color: #ccc;
+            border: 2px solid black;
+        }
+        /* Varian Kartu Produk */
+        .product-card {
+            background-color: #e0f7fa;
+        }
+        .product-image {
+            height: 150px;
+            background-color: #ccc;
+        }
+        .bg-blue-light {
+            background-color: #b3e5fc;
+        }
+        
+        /* Riwayat Pesanan */
+        .kartu-pesanan {
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 24px;
+        }
+        .header-pesanan {
+            padding: 20px;
+            border-bottom: 1px solid #dee2e6;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .isi-pesanan {
+            padding: 20px;
+        }
+        .item-produk-pesanan {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .item-produk-pesanan img {
+            width: 70px;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-right: 15px;
+        }
+        /* Varian Status */
+        .status-selesai, .status-complete {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .status-pengiriman, .status-shipping {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+        .status-menunggu, .status-pending {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        .order-summary {
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .order-summary:last-child {
+            margin-bottom: 0;
+        }
+
+
+        /* Testimoni */
+        .testimoni {
+            background-color: #e0e0e0;
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+        }
+        .testimoni img {
+            width: 50px;
+            height: 50px;
+            background-color: black;
+            border-radius: 50%;
+            margin: 10px auto;
+        }
+        .rating input {
+            display: none;
+        }
+        .rating label {
+            font-size: 2rem;
+            color: #ccc;
+            cursor: pointer;
+        }
+        .rating input:checked ~ label,
+        .rating label:hover,
+        .rating label:hover ~ label {
+            color: #ffc107;
+        }
+
+        /* Formulir & Kontak */
+        .pembungkus-formulir {
+            background-color: #e5e5e5;
+            padding: 40px;
+            border-radius: 5px;
+        }
+        .kartu-kontak {
+            background-color: #ddd;
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .kartu-kontak i {
+            font-size: 24px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+
+        /* Keranjang & Checkout */
+        .kartu-keranjang {
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header-keranjang {
+            border-bottom: 1px solid #e9ecef;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            color: #495057;
+        }
+        .badge {
+            padding: 0.5em 0.8em;
+            font-size: 0.8em;
+            font-weight: 600;
+        }
+        .isi-keranjang {
+            padding: 0;
+        }
+        .item-keranjang {
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e9ecef;
+        }
+        .item-keranjang:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        .info-produk-keranjang {
+            margin-left: 20px;
+        }
+        .nama-produk {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #333;
+        }
+        .kategori-produk {
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+        .harga-produk {
+            font-weight: 700;
+            color: #007bff;
+            margin-top: 5px;
+        }
+        .kontrol-jumlah {
+            width: 60px;
+        }
+        .kontrol-jumlah input {
+            text-align: center;
+            padding: 0.375rem 0.5rem;
+            border: 1px solid #ced4da;
+            border-radius: 0.25rem;
+        }
+        .total-keranjang {
+            max-width: 700px;
+            margin: 20px auto 0;
+            padding: 15px 0;
+            border-top: 2px solid #dee2e6;
+        }
+        .harga-total {
+            color: #333;
+            font-weight: 700;
+        }
+        .pembayaran-card {
+            background-color: #e0f7fa;
+            padding: 40px;
+            border-radius: 12px;
+            max-width: 500px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .ringkasan-card {
+            background-color: #e0f7fa;
+            padding: 20px;
+            border-radius: 12px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .item-ringkasan {
+            padding: 10px 0;
+            border-bottom: 1px solid #ced4da;
+        }
+        .item-ringkasan:last-child {
+            border-bottom: none;
+        }
+        .total-ringkasan {
+            border-top: 2px solid #000;
+            padding-top: 15px;
+            margin-top: 15px;
+        }
+        .info-pesanan {
+            background-color: #ffffff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        /* Halaman Detail Produk */
+        .produk-detail-section {
+            margin-top: 40px;
+        }
+        .produk-gambar {
+            padding-right: 30px;
+        }
+        .produk-info {
+            padding-left: 30px;
+        }
+        .produk-info h2 {
+            font-weight: bold;
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        .rating {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .rating-text {
+            margin-left: 10px;
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+        .harga {
+            color: #e91e63;
+            font-weight: bold;
+            font-size: 1.8rem;
+            margin-top: 10px;
+            margin-bottom: 5px;
+        }
+        .stok {
+            font-size: 1rem;
+            color: #555;
+        }
+        .deskripsi-produk {
+            background-color: #e0f7fa;
+            padding: 30px;
+            border-radius: 12px;
+            margin-top: 40px;
+        }
+        .judul-deskripsi {
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+        .isi-deskripsi p {
+            line-height: 1.6;
+        }
+        
+        .status-diproses {
+            background-color: #b3e5fc;
+            color: #01579b;
+        }
+        .status-pengiriman {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+
+        /* CSS untuk halaman detail pesanan */
+        .detail-card {
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .timeline-container {
+            position: relative;
+            padding: 1rem 0 0 1rem;
+        }
+
+        .timeline-container::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            width: 2px;
+            height: 100%;
+            background-color: #b3e5fc;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+            padding-left: 2rem;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 8px;
+            top: 5px;
+            width: 16px;
+            height: 16px;
+            background-color: #b3e5fc;
+            border-radius: 50%;
+            border: 2px solid #01579b;
+        }
+
+        .timeline-dot.active {
+            background-color: #000;
+            border-color: #000;
+        }
