@@ -36,8 +36,8 @@
     
             <div class="container text-center">
             <div class="row justify-content-center">
-                <div class="col-md-2"><a href="https://www.instagram.com/" class="text-decoration-none text-dark"><i class="bi bi-instagram"></i>sasendo</a></div>
-                <div class="col-md-2"><a href="" class="text-decoration-none text-dark"><i class="bi bi-envelope"></i>sasendo@gmail.com</a></div>
+                <div class="col-md-2"><a href="https://www.instagram.com/" class="text-decoration-none text-dark"><i class="bi bi-instagram"></i>katalogxxxx</a></div>
+                <div class="col-md-2"><a href="" class="text-decoration-none text-dark"><i class="bi bi-envelope"></i>katalogxxxx@gmail.com</a></div>
                 <div class="col-md-2"><a href="https://web.whatsapp.com/" class="text-decoration-none text-dark"><i class="bi bi-whatsapp"></i>(+62)85578033102</a></div>
             </div>
             <div class="p-3">

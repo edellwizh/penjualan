@@ -3,7 +3,7 @@
           <div class="container">
             <a class="navbar-brand d-flex align-items-center" href="#">
               <!-- <img src="{{ asset('logo.png') }}" alt="Logo" height="40"> -->
-              <span class="fw-semibold">Sandang Sehat Indonesia</span>
+              <span class="fw-semibold">Katalog Kita</span>
             </a>
             <div class="collapse navbar-collapse justify-content-end">
               <ul class="navbar-nav mb-2 mb-lg-0">

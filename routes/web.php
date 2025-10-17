@@ -11,159 +11,182 @@ use App\Http\Controllers\StatusPesananController;
 use App\Http\Controllers\TestimoniController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-
 Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::get('/home', [HomeController::class, 'index']);
 
-Route::get('/login', [AuthController::class, 'showLoginForm']);
+// AUTH CONTROLLER
+// Menampilkan login
+Route::get('/login', [AuthController::class, 'viewLogin']);
+
+// Proses login
 Route::post('/login', [AuthController::class, 'login']);
 
-Route::get('/register', [AuthController::class, 'ShowRegisterForm']);
+// Menampilkan register
+Route::get('/register', [AuthController::class, 'viewRegister']);
+
+// tambah register
 Route::post('/register', [AuthController::class, 'register']);
 
+// Proses logout
 Route::post('/logout', [AuthController::class, 'logout']);
 
 
-// Route untuk user
+###########################################
+# USER
+##########################################
+
 Route::middleware(['auth', 'user-acces:user'])->prefix('user')->group(function(){
 
-// Menampilkan semua produk
-Route::get('/produk', [ProdukController::class, 'index']);
-Route::get('/tentangkami', [KamiController::class, 'TentangKami']);
-
-// Menampilkan daftar testimoni user
-Route::get('/testimoni', [TestimoniController::class, 'index']);
-
-// Menampilkan form tambah testimoni
-Route::get('/testimoni/tambah', [TestimoniController::class, 'ViewTambahTestimoni']);
-
-// Simpan testimoni (POST)
-Route::post('/testimoni/tambah', [TestimoniController::class, 'TambahTestimoni']);
-
-// Detail produk
-Route::get('/produk/detail/{kode_produk}', [ProdukController::class, 'DetailProduk']);
-
-// Halaman Profile
+// AUTH CONTROLLER
+// Menampilkan profile
 Route::get('/profile', [AuthController::class, 'Profile']);
 
-// Menampilkan form tambah profile
+// Menampilkan tambah profile
 Route::get('/profile/edit', [AuthController::class, 'FormTambahProfile']);
 
-// Simpan profile
+// Proses ubah 
 Route::post('/profile/edit', [AuthController::class, 'UpdateProfile']);
 
-// Menampilkan halaman keranjang belanja
-Route::get('/keranjang', [KeranjangController::class, 'ViewKeranjang']);
 
-// Menambah produk ke keranjang
+// PRODUK CONTROLLER
+// Menampilkan semua produk
+Route::get('/produk', [ProdukController::class, 'index']);
+
+// Detail produk
+Route::get('/produk/detail/{kode_produk}', [ProdukController::class, 'detailProduk']);
+
+// TESTIMONI CONTROLLER
+Route::get('/testimoni', [TestimoniController::class, 'index']);
+
+// Proses tambah
+Route::post('/testimoni/tambah', [TestimoniController::class, 'tambahTestimoni']);
+
+
+// HOMECONTROLLER
+// Menampilkan detail status
+Route::get('/detailstatus-pemesanan/{id}', [HomeController::class, 'detailStatususer']);
+
+
+// KERANJANG CONTROLLER
+// Menampilkan 
+Route::get('/keranjang', [KeranjangController::class, 'viewKeranjang']);
+
+// Proses tambah
 Route::post('/keranjang/tambah', [KeranjangController::class, 'TambahKeranjang']);
 
-// Mengubah jumlah produk di keranjang
+// Proses update
 Route::post('/keranjang/edit/{id}', [KeranjangController::class, 'UpdateKeranjang']);
 
-// Menghapus produk dari keranjang
+// hapus
 Route::delete('/keranjang/hapus/{id}', [KeranjangController::class, 'HapusKeranjang']);
 
-// Menampilkan halaman checkout
-Route::get('/pesan', [PesanController::class, 'ViewPesan']);
 
-// Memproses pesanan dari halaman checkout
-Route::post('/pesan', [PesanController::class, 'ProsesPesan']);
+// PESAN CONTROLLER
+// Menampilkan 
+Route::get('/pesan', [PesanController::class, 'viewPesan']);
 
-// Route untuk menampilkan halaman pembayaran
+// Proses
+Route::post('/pesan', [PesanController::class, 'prosesPesan']);
+
+// Menampilkan
 Route::get('/pembayaran', [PesanController::class, 'halamanPembayaran']);
 
-// Route untuk redirect ke pembayaran berdasarkan ID pesanan
+// Proses bayar sekarang
 Route::get('/bayar/{id}', [PesanController::class, 'redirectToPembayaran'])->name('user.pembayaran');
 
-// Route untuk menampilkan riwayat pesanan (semua atau detail)
+// Proses ubah status pesanan diproses
 Route::get('/riwayat-pemesanan', [PesanController::class, 'riwayatPemesanan']);
 
-// Route untuk menampilkan detail status pesanan
-Route::get('/detailstatus-pemesanan/{id}', [StatusPesananController::class, 'DetailPesanan']);
-
-// Route untuk memproses pesanan setelah pembayaran
+// Menampilkan
 Route::get('/proses-pesanan/{id}', [PesanController::class, 'prosesPesanan'])->name('user.riwayat_pesanan');
+
+// KAMI CONTROLLER
+Route::get('/tentangkami', [KamiController::class, 'TentangKami']);
 
 });
 
-// Route untuk admin
+###########################################
+# ADMIN
+##########################################
+
+// HOME CONTROLLER
 Route::middleware(['auth', 'user-acces:admin'])->prefix('admin')->group(function(){
-Route::get('/home', [HomeController::class, 'ViewHome']);
+Route::get('/home', [HomeController::class, 'homeAdmin']);
 
-// Menampilkan semua produk
-Route::get('/produk', [ProdukController::class, 'index']);
+// Menampilkan pendapatan
+Route::get('/pendapatan', [HomeController::class, 'Pendapatan']);
 
-// Menampilkan form tambah produk
-Route::get('/produk/tambah', [ProdukController::class, 'ViewTambahProduk']);
+// Menampilkan detail pendapatan
+Route::get('/pendapatan/{tanggal}', [HomeController::class, 'detailPendapatan']);
 
-// Menyimpan produk baru
-Route::post('/produk/tambah', [ProdukController::class, 'TambahProduk']);
+// Menampilkan detail pesanan
+Route::get('/detailpesanan/{id}', [HomeController::class, 'detailPesananadmin']);
 
-// Menampilkan form edit produk
-Route::get('/produk/edit/{kode_produk}', [ProdukController::class, 'ViewEditProduk']);
-
-// Menyimpan update produk
-Route::put('/produk/edit/{kode_produk}', [ProdukController::class, 'UpdateProduk']);
-
-// Menghapus produk
-Route::delete('/produk/delete/{kode_produk}', [ProdukController::class, 'DeleteProduk']);
-
-// Menampilkan laporan
-Route::get('/laporan', [ProdukController::class, 'ViewLaporan']);
-
-// Menampilkan print pdf
-Route::get('/report', [ProdukController::class, 'print']);
-
-// Menampilkan semua Kategori
-Route::get('/kategori', [KategoriController::class, 'index']);
-
-// Menampilkan form tambah kategori
-Route::get('/kategori/tambah', [KategoriController::class, 'ViewTambahKategori']);
-
-// Menyimpan kategori baru
-Route::post('/kategori/tambah', [KategoriController::class, 'TambahKategori']);
-
-// Menampilkan form edit kategori
-Route::get('/kategori/edit/{id}', [KategoriController::class, 'ViewEditKategori']);
-
-// Menyimpan update kategori
-Route::put('/kategori/edit/{id}', [KategoriController::class, 'UpdateKategori']);
-
-// Menghapus kategori
-Route::delete('/kategori/delete/{id}', [KategoriController::class, 'DeleteKategori']);
-
-// menampilkan  testimoni
-Route::get('/testimoni', [TestimoniController::class, 'adminIndex']);
-
-// Status admin  testimoni
-Route::get('/testimoni/status/{id}', [TestimoniController::class, 'UpdateStatus']);
-
-// menampilkan  testimoni
-Route::get('/testimoni/delete/{id}', [TestimoniController::class, 'delete']);
-
-// Route untuk menampilkan status
-Route::get('/pesanan/status', [StatusPesananController::class, 'Status']);
+// Export pdf
+Route::get('/report-pendapatan/{tanggal}', [HomeController::class, 'exportPendapatanPdf']);
 
 // Route untuk menyimpan status baru
 Route::post('/pesanan/status/{pesanan}', [StatusPesananController::class, 'updateStatus']);
 
-// Route untuk pendapatan
-Route::get('/pendapatan', [HomeController::class, 'indexPendapatan']);
 
-// Route untuk detail pendapatan
-Route::get('/pendapatan/{tanggal}', [HomeController::class, 'detailPendapatan']);
+
+// KATEGORI CONTROLLER
+// Menampilkan semua Kategori
+Route::get('/kategori', [KategoriController::class, 'index']);
+
+// Menampilkan tombol
+Route::get('/kategori/tambah', [KategoriController::class, 'viewtambahKategori']);
+
+// Proses tambah
+Route::post('/kategori/tambah', [KategoriController::class, 'tambahKategori']);
+
+// Menampilkan tombol
+Route::get('/kategori/edit/{id}', [KategoriController::class, 'vieweditKategori']);
+
+// Proses update
+Route::put('/kategori/edit/{id}', [KategoriController::class, 'updateKategori']);
+
+// Proses Hapus
+Route::delete('/kategori/delete/{id}', [KategoriController::class, 'deleteKategori']);
+
+
+// PRODUK CONTROLLER
+// Menampilkan semua produk
+Route::get('/produk', [ProdukController::class, 'index']);
+
+// Menampilkan tombol
+Route::get('/produk/tambah', [ProdukController::class, 'viewtambahProduk']);
+
+// Proses tambah
+Route::post('/produk/tambah', [ProdukController::class, 'tambahProduk']);
+
+// Menampilkan tombol
+Route::get('/produk/edit/{kode_produk}', [ProdukController::class, 'vieweditProduk']);
+
+// Proses update
+Route::put('/produk/edit/{kode_produk}', [ProdukController::class, 'updateProduk']);
+
+// Proses hapus
+Route::delete('/produk/delete/{kode_produk}', [ProdukController::class, 'deleteProduk']);
+
+// Menampilkan laporan
+Route::get('/laporan', [ProdukController::class, 'viewLaporan']);
+
+// Menampilkan print laporan
+Route::get('/report', [ProdukController::class, 'print']);
+
+
+// TESTIMONI CONTROLLER
+// Menampilkan  
+Route::get('/testimoni', [TestimoniController::class, 'adminIndex']);
+
+// Ubah status
+Route::get('/testimoni/status/{id}', [TestimoniController::class, 'updateStatus']);
+
+// Hapus
+Route::get('/testimoni/delete/{id}', [TestimoniController::class, 'delete']);
+
+
 });

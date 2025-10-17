@@ -13,11 +13,8 @@ use Illuminate\Support\Str;
 
 class PesanController extends Controller
 {
-    /**
-     * Tampilkan halaman checkout.
-     */
-    public function ViewPesan()
-    {
+    // Menampilkan
+    public function viewPesan(){
         // Ambil data keranjang untuk user yang sedang login
         $keranjang = Keranjang::with('produk')->where('user_id', Auth::id())->get();
         $user = Auth::user();
@@ -41,10 +38,8 @@ class PesanController extends Controller
         return view('user.pemesanan', compact('keranjang', 'totalHarga', 'invoiceNumber'));
     }
 
-    /**
-     * Proses pesanan dari keranjang belanja.
-     */
-    public function ProsesPesan(Request $request)
+    // Proses
+    public function prosesPesan(Request $request)
     {
         if (!Auth::check()) {
             return redirect(Auth::user()->role . '/login')->with('error', 'Anda harus login untuk melakukan checkout.');
@@ -128,9 +123,7 @@ class PesanController extends Controller
         }
     }
 
-    /**
-     * Metode baru untuk menampilkan halaman pembayaran
-     */
+    // Menampilkan
     public function halamanPembayaran(Request $request)
     {
         // Cek apakah ada parameter invoice_number dari URL
@@ -161,9 +154,7 @@ class PesanController extends Controller
         return view('user.pembayaran', compact('pesanan'));
     }
 
-    /**
-     * Method untuk menangani klik tombol "Bayar Sekarang" dari riwayat
-     */
+    // Proses bayar sekarang
     public function redirectToPembayaran($id)
     {
         // Cari pesanan berdasarkan ID dan pastikan statusnya menunggu_pembayaran
@@ -181,10 +172,7 @@ class PesanController extends Controller
         return redirect(Auth::user()->role . '/pembayaran?invoice_number=' . $pesanan->invoice_number);
     }
 
-    /**
-     * Method untuk mengubah status pesanan menjadi "Pesanan Diproses"
-     * Dipanggil saat user klik "Lihat Pesanan Kamu"
-     */
+    // Proses ubah status pesanan diproses
     public function prosesPesanan($id)
     {
         // Cari pesanan berdasarkan ID dan pastikan milik user yang sedang login
@@ -209,11 +197,7 @@ class PesanController extends Controller
                     ->with('success', 'Pesanan Anda sedang diproses!');
     }
 
-    /**
-     * Menampilkan riwayat pesanan
-     * - Jika ada parameter invoice: tampilkan detail spesifik
-     * - Jika tidak ada parameter: tampilkan semua riwayat
-     */
+    // Menampilkan
     public function riwayatPemesanan(Request $request)
     {
         $invoiceNumber = $request->query('invoice');

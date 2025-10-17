@@ -12,13 +12,13 @@
     @include('sidebar.user')
     <section class="hero-kontak">
         <h2><strong>Testimoni</strong></h2>
-        <p>by Sandang Sehat Indonesia</p>
+        <p>by Katalog Kita</p>
     </section>
 
     <div class="container my-5">
         <div class="row justify-content-center">
             <div class="col-lg-8">
-                <p>Punya pengalaman atau saran tentang website ini? Ceritakan di sini, ya!</p>
+                <p>Punya pengalaman berbelanja atau saran tentang website ini? Ceritakan di sini, ya!</p>
                 <div class="pembungkus-formulir">
                     <form action="{{ url('/user/testimoni/tambah') }}" method="POST">
                         @csrf
@@ -62,7 +62,7 @@
                     <div class="kartu-kontak">
                         <i class="bi bi-envelope-fill"></i>
                         <h6><strong>Email</strong></h6>
-                        <p>sasexxx@gmail.com</p>
+                        <p>katalogxxxx@gmail.com</p>
                     </div>
                 </a>
             </div>
@@ -71,7 +71,7 @@
                     <div class="kartu-kontak">
                         <i class="bi bi-instagram"></i>
                         <h6><strong>Instagram</strong></h6>
-                        <p>@sasendo</p>
+                        <p>@katalogxxxx</p>
                     </div>
                 </a>
             </div>

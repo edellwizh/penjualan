@@ -10,14 +10,13 @@ use App\Models\Pesanan;
 
 class AuthController extends Controller
 {
-    public function showLoginForm()
-    {
+    // Menampilkan login
+    public function viewLogin(){
         return view('login.login');
     }
 
-    // Fungsi untuk proses login
-    public function login(Request $request)
-    {
+    // Proses login
+    public function login(Request $request){
         $request->validate([
             'email' => 'required|email',
             'password' => 'required|min:6',
@@ -39,14 +38,13 @@ class AuthController extends Controller
         ]);
     }
 
-    // Fungsi untuk menampilkan form registrasi
-    public function showRegisterForm()
-    {
-        return view('login.register');
+    // Menampilkan registrasi
+    public function viewRegister(){
+    return view('login.register');
     }
 
-    public function register(Request $request)
-    {
+    // tambah register
+    public function register(Request $request){
         // Validasi input
         $validated = $request->validate([
             'name' => 'required|string|max:255',
@@ -67,17 +65,8 @@ class AuthController extends Controller
         return back()->with('success', 'Registrasi berhasil. Silakan login.');
     }
 
-
-    // Fungsi logout
-    public function logout()
-    {
-        Auth::logout();
-        return redirect('/login');
-    }
-
-    // Menampilkan halaman profil user
-    public function Profile()
-     {
+    // Menampilkan profil user
+    public function Profile(){
         // Ambil 3 riwayat pesanan terakhir
         $recentOrders = Pesanan::where('user_id', Auth::id())
                          ->orderBy('created_at', 'desc')
@@ -87,13 +76,15 @@ class AuthController extends Controller
         return view('user.profile', compact('recentOrders'));
     }
 
-    public function FormTambahProfile()
+    // Menampilkan tambah profile
+    public function formtambahProfile()
     {
 
         return view('crud.editprofile');
     }
-    // Method untuk memproses update profil
-    public function UpdateProfile(Request $request)
+
+    // Proses ubah profil
+    public function updateProfile(Request $request)
     {
         // Validasi input dari form
         $request->validate([
@@ -122,5 +113,11 @@ class AuthController extends Controller
 
         // Redirect kembali ke halaman tertentu dengan pesan sukses
         return redirect(Auth::user()->role . '/profile')->with('success', 'Profil berhasil diperbarui!');
+    }
+
+    // proses logout
+    public function logout(){
+        Auth::logout();
+        return redirect('/login');
     }
 }

@@ -15,7 +15,7 @@
 <div class="hero hero-detail-produk">
     <div class="container">
         <h1 class="text-center judul-utama">Detail Produk</h1>
-        <p class="text-center slogan-header">by Sandang Sehat Indonesia</p>
+        <p class="text-center slogan-header">by Katalog Kita</p>
     </div>
 </div>
 

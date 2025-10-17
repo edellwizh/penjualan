@@ -7,12 +7,10 @@ use App\Models\Produk;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class KeranjangController extends Controller
-{
-    /**
-     * Tampilkan halaman keranjang belanja pengguna.
-     */
-    public function ViewKeranjang()
+class KeranjangController extends Controller{
+
+    // Menampilkan keranjang
+    public function viewKeranjang()
     {
         // Ambil data keranjang untuk user yang sedang login
         $keranjang = Keranjang::with('produk')
@@ -27,11 +25,8 @@ class KeranjangController extends Controller
         return view('user.keranjang', compact('keranjang', 'totalHarga'));
     }
 
-    /**
-     * Tambahkan produk ke keranjang.
-     * Menggunakan method POST
-     */
-    public function TambahKeranjang(Request $request)
+    // Proses tambah
+    public function tambahKeranjang(Request $request)
     {
         $request->validate([
             'kode_produk' => 'required|exists:produks,kode_produk',
@@ -62,10 +57,8 @@ class KeranjangController extends Controller
         return redirect()->back()->with('success', 'Produk berhasil ditambahkan ke keranjang!');
     }
 
-    /**
-     * Update jumlah produk di keranjang.
-     */
-    public function UpdateKeranjang(Request $request, $id)
+    // Proses update
+    public function updateKeranjang(Request $request, $id)
     {
         $request->validate([
             'quantity' => 'required|integer|min:1'
@@ -78,10 +71,8 @@ class KeranjangController extends Controller
         return redirect()->back()->with('success', 'Jumlah produk berhasil diubah!');
     }
 
-    /**
-     * Hapus satu item dari keranjang.
-     */
-    public function HapusKeranjang($id)
+    // hapus
+    public function delete($id)
     {
         $itemKeranjang = Keranjang::where('user_id', Auth::id())->findOrFail($id);
         $itemKeranjang->delete();

@@ -8,19 +8,18 @@ use Illuminate\Support\Facades\Auth;
 
 class StatusPesananController extends Controller
 {
-    public function Status()
-    {
-        // Ambil semua pesanan dengan status >= diproses
-        $pesanans = Pesanan::with('user')
-            ->whereIn('status', ['pesanan_diproses', 'pengiriman', 'selesai'])
-            ->orderBy('created_at', 'desc')
-            ->get();
+//     // Menampilkan status admin
+//     public function Status(){
+//         $pesanans = Pesanan::with('user')
+//             ->whereIn('status', ['pesanan_diproses', 'pengiriman', 'selesai'])
+//             ->orderBy('created_at', 'desc')
+//             ->get();
 
-        return view('admin.status_penjualan', compact('pesanans'));
-    }
+//         return view('admin.detailpendapatan', compact('pesanans'));
+//     }
 
-    public function updateStatus(Request $request, Pesanan $pesanan)
-    {
+    // Proses update
+    public function updateStatus(Request $request, Pesanan $pesanan){
         $request->validate([
             'status' => 'required|in:pengiriman,selesai',
         ]);
@@ -40,15 +39,5 @@ class StatusPesananController extends Controller
         ]);
 
         return back()->with('success', 'Status pesanan berhasil diperbarui.');
-    }
-    
-    public function DetailPesanan($id)
-    {
-        $pesanan = Pesanan::with(['detailPesanan.produk', 'user'])
-            ->where('id', $id)
-            ->where('user_id', Auth::id())
-            ->firstOrFail();
-
-        return view('user.detailstatus_pesanan', compact('pesanan'));
     }
 }

@@ -16,7 +16,7 @@
     <div class="container">
         <div class="header-keranjang">
             <h1 class="text-center judul-utama">Keranjang Belanja</h1>
-            <p class="text-center slogan-header">by Sandang Sehat Indonesia</p>
+            <p class="text-center slogan-header">by Katalog Kita</p>
         </div>
 
         @include('sidebar.pesansukses')

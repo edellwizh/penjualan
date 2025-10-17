@@ -8,46 +8,46 @@ use Illuminate\Support\Facades\Auth;
 
 class KategoriController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         $kategoris = Kategori::all();
         return view('admin.kategori', compact('kategoris'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function ViewTambahKategori()
+    // Menampilkan tombol 
+    public function viewtambahKategori()
     {
         return view('crud.tambahkategori');
     }
-    // Proses tambah kategori
-    public function TambahKategori(Request $request){
+
+    // Proses tambah
+    public function tambahKategori(Request $request){
         Kategori::create([
             'nama_kategori' => $request->nama_kategori,
             'deskripsi' => $request->deskripsi,
         ]);
         return redirect(Auth::user()->role . '/kategori')->with('success', 'Kategori berhasil ditambahkan');
     }
-    // Tampilkan form edit kategori
-    public function ViewEditKategori($id){
+
+    // Menampilkan tombol
+    public function vieweditKategori($id){
         $editkategori = Kategori::where('id', $id)->first();
         return view('crud.editkategori', compact('editkategori'));
     }
-    // Proses update produk
-    public function UpdateKategori(Request $request, $id){
+
+    // Proses update 
+    public function updateKategori(Request $request, $id){
         Kategori::where('id', $id)->update([
             'nama_kategori' => $request->nama_kategori,
             'deskripsi' => $request->deskripsi,
         ]);
         return redirect(Auth::user()->role . '/kategori')->with('success', 'Kategori berhasil diubah');
     }
-    // Proses hapus kategori
-    public function DeleteKategori($id){
+
+    // Proses hapus 
+    public function deleteKategori($id){
         Kategori::where('id', $id)->delete();
         return redirect(Auth::user()->role . '/kategori')->with('success', 'Kategori berhasil dihapus');
     }
+    
 }

@@ -25,19 +25,19 @@
             </div>
 
             <div class="card">
-                <a href="#" class="text-decoration-none">
-                <h3>Penjualan Hari Ini</h3>
-                <p id="sales-today">{{$salesToday}}</p>
+                <a href="{{ url(Auth::user()->role.'/pendapatan') }}" class="text-decoration-none">
+                <h3>Laporan Pendapatan</h3>
                 </a>
-            </div>
+            </div> 
 
             <div class="card">
                 <a href="{{ url(Auth::user()->role.'/pendapatan') }}" class="text-decoration-none">
-                <h3>Total Pendapatan</h3>
-                <p id="total-revenue">Rp 50,000,000</p>
+                <h5>Total Pendapatan & Status Pemesanan</h5>
+                <p id="total-revenue">{{ $totalRevenue }}</p>
+                <small class="text-muted">Hari ini {{ now()->format('d F Y') }}</small>
                 </a>
             </div>
-
+            
             <div class="card">
                 <a href="#" class="text-decoration-none">
                 <h3>Pengguna Terdaftar</h3>

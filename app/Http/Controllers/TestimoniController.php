@@ -7,18 +7,16 @@ use App\Models\Testimoni;
 use App\Models\Produk;
 use Illuminate\Support\Facades\Auth;
 
-class TestimoniController extends Controller
-{
-    // Tampilkan semua testimoni (user)
+class TestimoniController extends Controller{
+    
     public function index()
     {
         $testimonis = Testimoni::where('status', true)->latest()->get();
         return view('user.testimoni', compact('testimonis'));
     }
 
-    // Simpan testimoni baru
-    public function TambahTestimoni(Request $request)
-    {
+    // Proses tambah
+    public function tambahTestimoni(Request $request){
         $request->validate([
             'rating' => 'required|integer|min:1|max:5',
             'pesan' => 'required|string|max:1000',
@@ -34,14 +32,13 @@ class TestimoniController extends Controller
         return redirect()->back()->with('success', 'Terima kasih! Testimoni kamu akan ditinjau terlebih dahulu.');
     }
 
-    // Admin: Tampilkan semua testimoni
-    public function adminIndex()
-    {
+    // Menampilkan
+    public function adminIndex(){
         $testimonis = Testimoni::with('user')->latest()->get();
         return view('admin.testimoni', compact('testimonis'));
     }
 
-    // Admin: Ubah status testimoni
+    // Ubah status
     public function updateStatus($id)
     {
         $testimoni = Testimoni::findOrFail($id);
@@ -51,7 +48,7 @@ class TestimoniController extends Controller
         return redirect()->back()->with('success', 'Status testimoni diperbarui.');
     }
 
-    // Admin: Hapus testimoni
+    // Hapus
     public function delete($id)
     {
         $testimoni = Testimoni::findOrFail($id);

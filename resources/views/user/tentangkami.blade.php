@@ -15,7 +15,7 @@
 {{-- Header --}}
 <div class="hero text-center">
     <h1 class="fw-bold">Tentang Kami</h1>
-    <p class="mb-0">by Sandang Sehat Indonesia</p>
+    <p class="mb-0">by Katalog Kita</p>
 </div>
 
 {{-- Lokasi --}}
@@ -37,8 +37,8 @@
         <div class="col-md-6">
             <h4 class="fw-bold">Siapa Kami?</h4>
             <p>
-                Sandang Sehat Indonesia adalah brand lokal yang fokus menyediakan pakaian dengan berkualitas tinggi untuk masyarakat lokal ataupun asing. Kami mengutamakan kenyamanan, fungsionalitas, dan tampilan agar setiap masyarakat bisa mengenakan pakaian dengan percaya diri dan leluasa. Dengan desain yang modern dan bahan yang dipilih dengan cermat, kami hadir sebagai wujud dukungan untuk para masyarakat.
-            </p>
+            Katalog Kita adalah platform e-commerce berbasis web yang berfungsi sebagai etalase digital untuk menyediakan produk makanan berkualitas tinggi, baik itu siap saji maupun bahan baku. 
+            Kami mengutamakan kualitas bahan baku segar, kebersihan proses, dan kemudahan pemesanan melalui User Interface yang intuitif. Dengan mengintegrasikan sistem manajemen yang efisien, Katalog Kita hadir untuk memudahkan masyarakat lokal dalam mengakses kebutuhan kuliner dengan percaya diri dan praktis.            </p>
         </div>
     </div>
 </div>
