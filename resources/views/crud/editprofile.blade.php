@@ -22,11 +22,22 @@
   <div class="row justify-content-center">
     <div class="col-md-8">
       <div class="card p-4 shadow-sm">
+        @if ($errors->any())
+          <div class="alert alert-danger">
+            <ul class="mb-0">
+              @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+              @endforeach
+            </ul>
+          </div>
+        @endif
+
+        @if(session('success'))
+          <div class="alert alert-success">{{ session('success') }}</div>
+        @endif
+
         <form action="{{ url(Auth::user()->role.'/profile/edit') }}" method="POST">
           @csrf
-          @if(session('success'))
-            <div class="alert alert-success">{{ session('success') }}</div>
-          @endif
 
           <div class="mb-3">
             <label for="provinsi" class="form-label">Provinsi</label>

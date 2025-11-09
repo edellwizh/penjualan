@@ -44,7 +44,7 @@
 </div>
 
 <div class="slogan mt-5">
-    Sandang Sehat Indonesia — Nyaman dipakai, siap mengabdi.
+    Katalog Kita — Segar dan Aman, Pesan Kapan Saja..
 </div>
 
 {{-- Tim Kami --}}

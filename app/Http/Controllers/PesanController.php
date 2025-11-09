@@ -220,4 +220,65 @@ class PesanController extends Controller
 
         return view('user.riwayat_pesanan', compact('pesanans', 'invoiceNumber'));
     }
+
+    // Tambahkan di dalam class PesanController
+
+public function pesanSekarang(Request $request, $kode_produk)
+{
+    $user = Auth::user();
+
+    // Cek alamat
+    if (empty($user->alamat)) {
+        return redirect(Auth::user()->role . '/profile')
+            ->with('error', 'Silakan lengkapi alamat pengiriman Anda terlebih dahulu sebelum melanjutkan.');
+    }
+
+    // Ambil produk
+    $produk = Produk::where('kode_produk', $kode_produk)->firstOrFail();
+
+    // Cek stok
+    if ($produk->jumlah_produk < 1) {
+        return back()->with('error', 'Stok produk "' . $produk->nama_produk . '" tidak mencukupi.');
+    }
+
+    DB::beginTransaction();
+
+    try {
+        // Hitung total (1 item)
+        $totalHarga = $produk->harga;
+
+        // Generate invoice
+        $invoiceNumber = 'INV-' . strtoupper(Str::random(8));
+
+        // Buat pesanan
+        $pesanan = Pesanan::create([
+            'user_id' => $user->id,
+            'invoice_number' => $invoiceNumber,
+            'total_harga' => $totalHarga,
+            'alamat_pengiriman' => $user->alamat,
+            'status' => 'menunggu_pembayaran',
+        ]);
+
+        // Buat detail pesanan
+        DetailPesanan::create([
+            'pesanan_id' => $pesanan->id,
+            'kode_produk' => $produk->kode_produk,
+            'quantity' => 1,
+            'harga' => $produk->harga,
+        ]);
+
+        // Kurangi stok
+        $produk->decrement('jumlah_produk', 1);
+
+        DB::commit();
+
+        // Redirect langsung ke halaman pembayaran
+        return redirect(Auth::user()->role . '/pembayaran?invoice_number=' . $invoiceNumber)
+            ->with('success', "Pesanan Anda dengan nomor faktur {$invoiceNumber} berhasil dibuat! Silakan selesaikan pembayaran.");
+
+    } catch (\Exception $e) {
+        DB::rollBack();
+        return back()->with('error', 'Gagal memproses pesanan: ' . $e->getMessage());
+    }
+}
 }

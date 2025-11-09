@@ -11,63 +11,63 @@
 
 @include('sidebar.admin')
 
-     <!-- Main content -->
-      <div class="main-content">
-         
-         <div class="container">
-            <h4>Tambah Produk</h4>
+<!-- Main content -->
+<div class="main-content">
+    <div class="container">
+        <h4>Tambah Produk</h4>
 
-            @if ($errors->any())
+        @if ($errors->any())
             <div class="alert alert-danger mt-2">
                 <ul class="mb-0">
                     @foreach ($errors->all() as $error)
-                        {{ $error }}
+                        <li>{{ $error }}</li>
                     @endforeach
                 </ul>
             </div>
         @endif
 
-         <form action="{{ url(Auth::user()->role.'/produk/tambah') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ url(Auth::user()->role.'/produk/tambah') }}" method="POST" enctype="multipart/form-data">
             @csrf
-        <div class="form-group">
-            <label for="image">Gambar Produk</label>
-            <input type="file" name="image" class="form-control">
-        </div>
+            <div class="form-group">
+                <label for="image">Gambar Produk</label>
+                <input type="file" name="image" class="form-control">
+            </div>
 
-        <div class="form-group">
-            <label for="nama_produk">Nama Produk</label>
-            <input type="text" name="nama_produk" class="form-control" required>
-        </div>
+            <div class="form-group">
+                <label for="nama_produk">Nama Produk</label>
+                <input type="text" name="nama_produk" class="form-control" required>
+            </div>
 
-        <div class="mb-3">
-        <label for="kategori_id" class="form-label">Kategori</label>
-        <select name="kategori_id" class="form-control" required>
-            <option value="">-- Pilih Kategori --</option>
-            @foreach($kategoris as $kategori)
-                <option value="{{ $kategori->id }}">{{ $kategori->nama_kategori}}</option>
-            @endforeach
-        </select>
+            <div class="mb-3">
+                <label for="kategori_id" class="form-label">Kategori</label>
+                <select name="kategori_id" class="form-control" required>
+                    <option value="">-- Pilih Kategori --</option>
+                    @foreach($kategoris as $kategori)
+                        <option value="{{ $kategori->id }}">{{ $kategori->nama_kategori }}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="harga">Harga</label>
+                <input type="number" name="harga" class="form-control" required min="0">
+            </div>
+
+            <div class="form-group">
+                <label for="jumlah_produk">Jumlah Produk</label>
+                <input type="number" name="jumlah_produk" class="form-control" required min="0">
+            </div>
+
+            <div class="form-group">
+                <label for="deskripsi">Deskripsi (buat semenarik mungkin)</label>
+                <textarea name="deskripsi" class="form-control" required rows="8" style="resize: vertical;"></textarea>
+            </div>
+
+            <div class="form-group mt-3">
+                <button type="submit" class="btn btn-primary">Tambah Produk</button>
+            </div>
+        </form> <!-- Tutup form di sini, di dalam container -->
     </div>
+</div>
 
-        <div class="form-group">
-            <label for="harga">Harga</label>
-            <input type="number" name="harga" class="form-control" required>
-        </div>
-
-        <div class="form-group">
-            <label for="jumlah_produk">Jumlah Produk</label>
-            <input type="number" name="jumlah_produk" class="form-control" required>
-        </div>
-
-         <div class="form-group">
-            <label for="deskripsi">Deskripsi (buat semenarik mungkin)</label>
-            <textarea name="deskripsi" class="form-control" required rows="8" style="resize: vertical;"></textarea>
-        </div>
-
-        <div class="form-group mt-3">
-            <button type="submit" class="btn btn-primary">Tambah Produk</button>
-        </div>
-        </div>
-    </form>
-
-    @include('sidebar.footer')
+@include('sidebar.footer')

@@ -90,6 +90,8 @@ Route::get('/pesan', [PesanController::class, 'viewPesan']);
 // Proses
 Route::post('/pesan', [PesanController::class, 'prosesPesan']);
 
+Route::post('/pesan/sekarang/{kode_produk}', [PesanController::class, 'pesanSekarang']);
+
 // Menampilkan
 Route::get('/pembayaran', [PesanController::class, 'halamanPembayaran']);
 

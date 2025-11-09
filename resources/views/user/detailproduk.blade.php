@@ -48,9 +48,15 @@
                     </button>
                 </form>
 
-                <button class="btn-pesan flex-grow-1">
-                    Pesan Sekarang
-                </button>
+                <form action="{{ url(Auth::user()->role.'/pesan/sekarang/'. $produks->kode_produk) }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="kode_produk" value="{{ $produks->kode_produk }}">
+                    <input type="hidden" name="quantity" value="1">
+                    <button type="submit" class="btn-keranjang flex-grow-1" onclick="return confirm('Yakin ingin memesan {{ $produks->nama_produk }} sekarang?')">
+                        <i class="bi bi-cart"></i> Pesan Sekarang
+                    </button>
+                </form>
+
             </div>
             @include('sidebar.pesansukses')
         </div>
